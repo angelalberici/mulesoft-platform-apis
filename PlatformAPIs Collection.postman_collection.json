@@ -1,0 +1,1007 @@
+{
+	"info": {
+		"_postman_id": "18213fb4-2a3e-460e-841b-f1233d057685",
+		"name": "PlatformAPIs Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Set Up",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4f17e3b7-c1ce-46ae-86ff-1c6ed9c391e8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "64ba6bd7-472e-4610-8ee6-bd0ca105d871",
+								"exec": [
+									"const jar = pm.cookies.jar();",
+									"jar.clear(pm.request.url, function (error) {",
+									"  console.log(\"Clear Cookies\");",
+									"});",
+									"",
+									"",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"api-auth-header\", \"Bearer \" + data.access_token);",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"access_token\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "{{anypoint-password}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{anypoint-username}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://anypoint.mulesoft.com/accounts/login",
+							"protocol": "https",
+							"host": [
+								"anypoint",
+								"mulesoft",
+								"com"
+							],
+							"path": [
+								"accounts",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Details (Get org-id): api/me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e92d3b5-781e-4a03-8f89-b77fb5f1ea0a",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"org-id\", data.user.organizationId);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api-auth-header}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/accounts/api/me",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Environments (Get Env)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa1ff4c7-377d-45b9-877e-612db1572450",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api-auth-header}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/accounts/api/organizations/{{org-id}}/environments",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"organizations",
+								"{{org-id}}",
+								"environments"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Applications",
+			"item": [
+				{
+					"name": "List all (/applications)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6959b248-a37f-4349-aa14-05b70b6b5480",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api-auth-header}}"
+							},
+							{
+								"key": "X-ANYPNT-ENV-ID",
+								"value": "{{environment-id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-ANYPNT-ORG-ID",
+								"value": "{{org-id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://anypoint.mulesoft.com/cloudhub/api/applications",
+							"protocol": "https",
+							"host": [
+								"anypoint",
+								"mulesoft",
+								"com"
+							],
+							"path": [
+								"cloudhub",
+								"api",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b20fdb43-daa2-45f6-8545-03c2913f80e8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5393c721-6b8d-44fb-9212-25f77f872abc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Application",
+			"item": [
+				{
+					"name": "List App (/applications/{domain})",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6959b248-a37f-4349-aa14-05b70b6b5480",
+								"exec": [
+									"var jsonData = pm.response.json();",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api-auth-header}}"
+							},
+							{
+								"key": "X-ANYPNT-ENV-ID",
+								"value": "{{environment-id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-ANYPNT-ORG-ID",
+								"value": "{{org-id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://anypoint.mulesoft.com/cloudhub/api/applications/{{domain}}",
+							"protocol": "https",
+							"host": [
+								"anypoint",
+								"mulesoft",
+								"com"
+							],
+							"path": [
+								"cloudhub",
+								"api",
+								"applications",
+								"{{domain}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List App (/applications/{domain}/status)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6959b248-a37f-4349-aa14-05b70b6b5480",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{api-auth-header}}"
+							},
+							{
+								"key": "X-ANYPNT-ENV-ID",
+								"type": "text",
+								"value": "{{environment-id}}"
+							},
+							{
+								"key": "X-ANYPNT-ORG-ID",
+								"type": "text",
+								"value": "{{org-id}}"
+							}
+						],
+						"url": {
+							"raw": "https://anypoint.mulesoft.com/cloudhub/api/applications/{{domain}}/status",
+							"protocol": "https",
+							"host": [
+								"anypoint",
+								"mulesoft",
+								"com"
+							],
+							"path": [
+								"cloudhub",
+								"api",
+								"applications",
+								"{{domain}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Exchange",
+			"item": [
+				{
+					"name": "Assets",
+					"item": [
+						{
+							"name": "List Assets",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/assets?search={{search-value}}&domain=&offset=0&limit=20",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"assets"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "{{search-value}}"
+										},
+										{
+											"key": "domain",
+											"value": ""
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": null,
+											"value": null
+										},
+										{
+											"key": null,
+											"value": null
+										}
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X POST -H \\\"Authorization: Bearer d4677804-dab3-445a-9792-54de530ef345\\\" -H \\\"Content-Type: application/json\\\" -d '{\n  \\\"displayName\\\": “Custom_Field_Test”,\n  \\\"tagKey\\\": “Tag_Key_Test”,\n  \\\"dataType\\\": \\\"text\\\",\n  \\\"assetTypeRestrictions\\\": []\n}\n' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/59995d29-ebe2-43d9-a52b-766683fd41a7/fields\\\""
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Asset",
+					"item": [
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/assets/{{business-group-org-id}}/{{asset-name}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X POST -H \\\"Authorization: Bearer d4677804-dab3-445a-9792-54de530ef345\\\" -H \\\"Content-Type: application/json\\\" -d '{\n  \\\"displayName\\\": “Custom_Field_Test”,\n  \\\"tagKey\\\": “Tag_Key_Test”,\n  \\\"dataType\\\": \\\"text\\\",\n  \\\"assetTypeRestrictions\\\": []\n}\n' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/59995d29-ebe2-43d9-a52b-766683fd41a7/fields\\\""
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Fields",
+					"item": [
+						{
+							"name": "Create CustomFields",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"displayName\": \"{{field-display-name}}\",\n \"tagKey\": \"{{field-tag-key}}\",\n \"dataType\": \"text\",\n \"assetTypeRestrictions\": []\n}\n"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/fields",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"fields"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X POST -H \\\"Authorization: Bearer d4677804-dab3-445a-9792-54de530ef345\\\" -H \\\"Content-Type: application/json\\\" -d '{\n  \\\"displayName\\\": “Custom_Field_Test”,\n  \\\"tagKey\\\": “Tag_Key_Test”,\n  \\\"dataType\\\": \\\"text\\\",\n  \\\"assetTypeRestrictions\\\": []\n}\n' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/59995d29-ebe2-43d9-a52b-766683fd41a7/fields\\\""
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Field",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/fields/{{field-tag-key}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"fields",
+										"{{field-tag-key}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						},
+						{
+							"name": "List fields",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/fields",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"fields"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X POST -H \\\"Authorization: Bearer d4677804-dab3-445a-9792-54de530ef345\\\" -H \\\"Content-Type: application/json\\\" -d '{\n  \\\"displayName\\\": “Custom_Field_Test”,\n  \\\"tagKey\\\": “Tag_Key_Test”,\n  \\\"dataType\\\": \\\"text\\\",\n  \\\"assetTypeRestrictions\\\": []\n}\n' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/59995d29-ebe2-43d9-a52b-766683fd41a7/fields\\\""
+							},
+							"response": []
+						},
+						{
+							"name": "Update Field",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{APAuthHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"displayName\": \"{{field-display-name}}\",\n \"tagKey\": \"{{field-tag}}\",\n \"dataType\": \"text\",\n \"assetTypeRestrictions\": []\n}\n"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/fields/{{field-tag}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"fields",
+										"{{field-tag}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Field",
+					"item": [
+						{
+							"name": "Link Field to Asset",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"tagValue\": \"{{field-tag-value}}\"\n}"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/fields/{{field-tag-key}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{business-group-org-id}}",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}",
+										"{{asset-version}}",
+										"tags",
+										"fields",
+										"{{field-tag-key}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Link Field to Asset",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/fields/{{field-tag-key}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{business-group-org-id}}",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}",
+										"{{asset-version}}",
+										"tags",
+										"fields",
+										"{{field-tag-key}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"displayName\": \"{{category-display-name}}\",\n  \"tagKey\": \"{{category-tag-key}}\",\n  \"assetTypeRestrictions\": [{{category-asset-type-restriction}}],\n  \"acceptedValues\": [{{category-accepted-values}}]\n}"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/categories",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"categories"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/categories/{{category-tag-key}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"categories",
+										"{{category-tag-key}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						},
+						{
+							"name": "List Categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/categories",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{org-id}}",
+										"categories"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X POST -H \\\"Authorization: Bearer d4677804-dab3-445a-9792-54de530ef345\\\" -H \\\"Content-Type: application/json\\\" -d '{\n  \\\"displayName\\\": “Custom_Field_Test”,\n  \\\"tagKey\\\": “Tag_Key_Test”,\n  \\\"dataType\\\": \\\"text\\\",\n  \\\"assetTypeRestrictions\\\": []\n}\n' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/59995d29-ebe2-43d9-a52b-766683fd41a7/fields\\\""
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ed0da25d-6909-48a2-a6c3-1474af6bd49c",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "02ee7328-8f4b-4457-bca4-6520d0d6f7a0",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Link Category to Asset",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"tagValue\": [{{category-tag-value}}]\n}"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/categories/{{category-tag-key}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{business-group-org-id}}",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}",
+										"{{asset-version}}",
+										"tags",
+										"categories",
+										"{{category-tag-key}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Unlink Category from Asset",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/categories/{{category-tag-key}}",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{business-group-org-id}}",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}",
+										"{{asset-version}}",
+										"tags",
+										"categories",
+										"{{category-tag-key}}"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2442c93f-fd79-4495-a9f6-02463d8f8b38",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e2d894af-fb8a-4bd1-83b0-f27aa15b3798",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
