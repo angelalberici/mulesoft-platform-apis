@@ -1,6 +1,5 @@
 # MuleSoft Platform APIs
 
-## Introduction
 Every time you login into the MuleSoft Anypoint Platform, you are implicitly calling a set of APIs that are invoked by the UI, which are the PlatformAPIs! You can make these HTTP requests directly as well.
 
 If you are new to Platform APIs please go through this [post!](https://blogs.mulesoft.com/dev/howto/get-started-with-platform-apis-and-postman-automation/)
