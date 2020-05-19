@@ -389,7 +389,7 @@
 									}
 								],
 								"url": {
-									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/assets?search={{search-value}}&domain=&offset=0&limit=20",
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/assets?search={{search-value}}",
 									"protocol": "https",
 									"host": [
 										"anypoint",
@@ -406,26 +406,6 @@
 										{
 											"key": "search",
 											"value": "{{search-value}}"
-										},
-										{
-											"key": "domain",
-											"value": ""
-										},
-										{
-											"key": "offset",
-											"value": "0"
-										},
-										{
-											"key": "limit",
-											"value": "20"
-										},
-										{
-											"key": null,
-											"value": null
-										},
-										{
-											"key": null,
-											"value": null
 										}
 									]
 								},
@@ -498,7 +478,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n \"displayName\": \"{{field-display-name}}\",\n \"tagKey\": \"{{field-tag-key}}\",\n \"dataType\": \"text\",\n \"assetTypeRestrictions\": []\n}\n"
+									"raw": "{\n \"displayName\": \"Support Team\",\n \"tagKey\": \"support-team\",\n \"dataType\": \"text\",\n \"assetTypeRestrictions\": []\n}\n"
 								},
 								"url": {
 									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/fields",
@@ -659,10 +639,10 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"tagValue\": \"{{field-tag-value}}\"\n}"
+									"raw": "{\n\"tagValue\": \"exp-american-flights-team@example.com\"\n}"
 								},
 								"url": {
-									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/fields/{{field-tag-key}}",
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/fields/support-team",
 									"protocol": "https",
 									"host": [
 										"anypoint",
@@ -681,7 +661,7 @@
 										"{{asset-version}}",
 										"tags",
 										"fields",
-										"{{field-tag-key}}"
+										"support-team"
 									]
 								},
 								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
@@ -707,7 +687,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/fields/{{field-tag-key}}",
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/fields/support-team",
 									"protocol": "https",
 									"host": [
 										"anypoint",
@@ -726,7 +706,7 @@
 										"{{asset-version}}",
 										"tags",
 										"fields",
-										"{{field-tag-key}}"
+										"support-team"
 									]
 								},
 								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
@@ -756,7 +736,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"displayName\": \"{{category-display-name}}\",\n  \"tagKey\": \"{{category-tag-key}}\",\n  \"assetTypeRestrictions\": [{{category-asset-type-restriction}}],\n  \"acceptedValues\": [{{category-accepted-values}}]\n}"
+									"raw": "{\n  \"displayName\": \"API Layer\",\n  \"tagKey\": \"api-layer\",\n  \"assetTypeRestrictions\": [\"connector\", \"rest-api\"],\n  \"acceptedValues\": [\"Experience\", \"Process\", \"System\"]\n}"
 								},
 								"url": {
 									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{org-id}}/categories",
@@ -899,10 +879,10 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"tagValue\": [{{category-tag-value}}]\n}"
+									"raw": "{\n\t\"tagValue\": [\"Experience\"]\n}"
 								},
 								"url": {
-									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/categories/{{category-tag-key}}",
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/categories/api-layer",
 									"protocol": "https",
 									"host": [
 										"anypoint",
@@ -921,7 +901,52 @@
 										"{{asset-version}}",
 										"tags",
 										"categories",
-										"{{category-tag-key}}"
+										"api-layer"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						},
+						{
+							"name": "Link Category to Asset Copy",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"tagValue\": [\"Experience\"]\n}"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags/categories/api-layer",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{business-group-org-id}}",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}",
+										"{{asset-version}}",
+										"tags",
+										"categories",
+										"api-layer"
 									]
 								},
 								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
@@ -970,6 +995,427 @@
 									]
 								},
 								"description": "Generated from a curl request: \ncurl -X PUT -H \\\"Authorization: Bearer TOKEN\\\" -H \\\"Content-Type: application/json\\\" -d '{\n\\\"tagValue\\\": \\\"TAG_VALUE\\\"\n}' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/ORGANIZATION_ID/assets/GROUP_ID/ASSET_ID/VERSION/tags/fields/TAG_KEY\\\"\n"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Tag",
+					"item": [
+						{
+							"name": "Add Tag to Asset",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{api-auth-header}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n\t{\n\t\t\"value\":\"flights\"\n\t}\n]"
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/exchange/api/v1/organizations/{{business-group-org-id}}/assets/{{business-group-org-id}}/{{asset-name}}/{{asset-version}}/tags",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"exchange",
+										"api",
+										"v1",
+										"organizations",
+										"{{business-group-org-id}}",
+										"assets",
+										"{{business-group-org-id}}",
+										"{{asset-name}}",
+										"{{asset-version}}",
+										"tags"
+									]
+								},
+								"description": "Generated from a curl request: \ncurl -X POST -H \\\"Authorization: Bearer d4677804-dab3-445a-9792-54de530ef345\\\" -H \\\"Content-Type: application/json\\\" -d '{\n  \\\"displayName\\\": “Custom_Field_Test”,\n  \\\"tagKey\\\": “Tag_Key_Test”,\n  \\\"dataType\\\": \\\"text\\\",\n  \\\"assetTypeRestrictions\\\": []\n}\n' \\\"https://anypoint.mulesoft.com/exchange/api/v1/organizations/59995d29-ebe2-43d9-a52b-766683fd41a7/fields\\\""
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Design Center",
+			"item": [
+				{
+					"name": "Dependencies",
+					"item": [
+						{
+							"name": "Add dependency to asset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6959b248-a37f-4349-aa14-05b70b6b5480",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer 96b384f7-a6d2-43f9-a14b-652f60048b17"
+									},
+									{
+										"key": "X-ANYPNT-ENV-ID",
+										"type": "text",
+										"value": "{{environment-id}}"
+									},
+									{
+										"key": "X-ANYPNT-ORG-ID",
+										"type": "text",
+										"value": "{{org-id}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "x-organization-id",
+										"value": "bc6c7bb9-87c7-4220-833b-40509c780dd4",
+										"type": "text"
+									},
+									{
+										"key": "x-owner-id",
+										"value": "8c031457-cb33-46e4-a90f-f077757375d7",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"add\":[{\"groupId\":\"bc6c7bb9-87c7-4220-833b-40509c780dd4\",\"assetId\":\"banking-user\",\"version\":\"1.0.1\"}],\"remove\":[]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/designcenter/api-designer/projects/7af1fa1a-ffc7-429d-bd40-42d3d9f36d8e/branches/master/exchange/dependencies",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"designcenter",
+										"api-designer",
+										"projects",
+										"7af1fa1a-ffc7-429d-bd40-42d3d9f36d8e",
+										"branches",
+										"master",
+										"exchange",
+										"dependencies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update depency from asset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6959b248-a37f-4349-aa14-05b70b6b5480",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer 96b384f7-a6d2-43f9-a14b-652f60048b17"
+									},
+									{
+										"key": "X-ANYPNT-ENV-ID",
+										"type": "text",
+										"value": "{{environment-id}}"
+									},
+									{
+										"key": "X-ANYPNT-ORG-ID",
+										"type": "text",
+										"value": "{{org-id}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "x-organization-id",
+										"type": "text",
+										"value": "bc6c7bb9-87c7-4220-833b-40509c780dd4"
+									},
+									{
+										"key": "x-owner-id",
+										"type": "text",
+										"value": "8c031457-cb33-46e4-a90f-f077757375d7"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"add\":[{\"groupId\":\"bc6c7bb9-87c7-4220-833b-40509c780dd4\",\"assetId\":\"baking-common\",\"version\":\"1.0.1\"}],\"remove\":[{\"groupId\":\"bc6c7bb9-87c7-4220-833b-40509c780dd4\",\"assetId\":\"baking-common\",\"version\":\"1.0.0\"}]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/designcenter/api-designer/projects/7af1fa1a-ffc7-429d-bd40-42d3d9f36d8e/branches/master/exchange/dependencies",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"designcenter",
+										"api-designer",
+										"projects",
+										"7af1fa1a-ffc7-429d-bd40-42d3d9f36d8e",
+										"branches",
+										"master",
+										"exchange",
+										"dependencies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete dependency to asset Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6959b248-a37f-4349-aa14-05b70b6b5480",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer 96b384f7-a6d2-43f9-a14b-652f60048b17"
+									},
+									{
+										"key": "X-ANYPNT-ENV-ID",
+										"type": "text",
+										"value": "{{environment-id}}"
+									},
+									{
+										"key": "X-ANYPNT-ORG-ID",
+										"type": "text",
+										"value": "{{org-id}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "x-organization-id",
+										"value": "bc6c7bb9-87c7-4220-833b-40509c780dd4",
+										"type": "text"
+									},
+									{
+										"key": "x-owner-id",
+										"value": "8c031457-cb33-46e4-a90f-f077757375d7",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[{\"groupId\":\"bc6c7bb9-87c7-4220-833b-40509c780dd4\",\"assetId\":\"banking-user\",\"version\":\"1.0.1\"}]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/designcenter/api-designer/projects/7af1fa1a-ffc7-429d-bd40-42d3d9f36d8e/branches/master/exchange/dependencies",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"designcenter",
+										"api-designer",
+										"projects",
+										"7af1fa1a-ffc7-429d-bd40-42d3d9f36d8e",
+										"branches",
+										"master",
+										"exchange",
+										"dependencies"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Publsh to Exchange",
+					"item": [
+						{
+							"name": "https://anypoint.mulesoft.com/designcenter/api-designer/projects/fbdabf3b-6795-4cc5-85a3-929553feb033/branches/master/save/v2/?commit=true&message=Autosave%20Tue%20Mar%2024%202020%2013:00:31%20GMT+0000%20(Greenwich%20Mean%20Time)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Connection",
+										"value": "keep-alive"
+									},
+									{
+										"key": "Pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "Cache-Control",
+										"value": "no-cache"
+									},
+									{
+										"key": "x-origin",
+										"value": "API Designer"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 8aa7cc45-0ce7-4601-8818-a5e3b9508c46"
+									},
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data; boundary=----WebKitFormBoundaryXSvUYZiEQVXZqoOw"
+									},
+									{
+										"key": "x-owner-id",
+										"value": "8c031457-cb33-46e4-a90f-f077757375d7"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
+									},
+									{
+										"key": "Sec-Fetch-Dest",
+										"value": "empty"
+									},
+									{
+										"key": "x-organization-id",
+										"value": "bc6c7bb9-87c7-4220-833b-40509c780dd4"
+									},
+									{
+										"key": "Expires",
+										"value": "0"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Origin",
+										"value": "https://anypoint.mulesoft.com"
+									},
+									{
+										"key": "Sec-Fetch-Site",
+										"value": "same-origin"
+									},
+									{
+										"key": "Sec-Fetch-Mode",
+										"value": "cors"
+									},
+									{
+										"key": "Referer",
+										"value": "https://anypoint.mulesoft.com/designcenter/designer/"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en-GB,en-US;q=0.9,en;q=0.8"
+									},
+									{
+										"key": "Cookie",
+										"value": "_csrf=9KNwqr105oLsA8bZQDwf9Lf-; fs_uid=rs.fullstory.com`NZ1K4`5630056941912064:5688688612835328`88b67099`/1605700665; OptanonAlertBoxClosed=2020-02-13T17:22:14.723Z; trwv.uid=mulesoft-1581614530190-acebaa52%3A3; tc_q=; amplitude_idundefinedmulesoft.com=eyJvcHRPdXQiOmZhbHNlLCJzZXNzaW9uSWQiOm51bGwsImxhc3RFdmVudFRpbWUiOm51bGwsImV2ZW50SWQiOjAsImlkZW50aWZ5SWQiOjAsInNlcXVlbmNlTnVtYmVyIjowfQ==; coveo_visitorId=fb035323-f9e1-4175-b684-15c6db759e86; optimizelyEndUserId=oeu1583334969509r0.230972261879139; optimizelySegments=%7B%22301426924%22%3A%22false%22%2C%22301577736%22%3A%22direct%22%2C%22301577737%22%3A%22gc%22%7D; optimizelyBuckets=%7B%7D; zarget_visitor_info=%7B%7D; _mkto_trk=id:386-GZK-182&token:_mch-mulesoft.com-1583850723923-73477; _ga=GA1.2.106561828.1583850677; _gcl_au=1.1.1058883550.1584227812; token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjhjMDMxNDU3LWNiMzMtNDZlNC1hOTBmLWYwNzc3NTczNzVkNyIsImZpcnN0TmFtZSI6IkFuZ2VsIiwibGFzdE5hbWUiOiJBbGIiLCJlbWFpbCI6ImFuZ2VsLmFsYmVyaWNpQG11bGVzb2Z0LmNvbSIsInVzZXJuYW1lIjoiYW5nZWxfYWxiZXJpY2lfbXNfMiIsIm9yZ2FuaXphdGlvbiI6eyJpZCI6IjdlYmRkYWM4LWY2NmUtNDAwYi1hZjAyLTk0YTlhODM3YTAwOSIsIm5hbWUiOiJEdXJvdGFyIFJvb3QgQnVzaW5lc3MgR3JvdXAiLCJkb21haW4iOiJwZXJzb25hbC04NTE1IiwiZW50aXRsZW1lbnRzIjp7ImFwaXMiOnsiZW5hYmxlZCI6dHJ1ZX0sImNyb3dkIjp7ImhpZGVBcGlNYW5hZ2VyRGVzaWduZXIiOnRydWUsImhpZGVGb3JtZXJBcGlQbGF0Zm9ybSI6dHJ1ZSwiZW52aXJvbm1lbnRzIjp0cnVlfSwiY3Jvd2RTZWxmU2VydmljZU1pZ3JhdGlvbiI6eyJlbmFibGVkIjpmYWxzZX0sImh5YnJpZCI6eyJlbmFibGVkIjp0cnVlfSwid29ya2VyQ2xvdWRzIjp7ImFzc2lnbmVkIjoxLCJyZWFzc2lnbmVkIjowfSwic2VydmljZU1lc2giOnsiZW5hYmxlZCI6ZmFsc2V9fX0sImludGVyYWN0aXZlTG9naW4iOnRydWUsInRva2VuIjoiYTY1MTlmYzAtYjVhMi00MzFhLTk1MzEtOWYwNjFmNzA1ZjY5IiwiaWF0IjoxNTg0NDQ3ODk0LCJhdWQiOiJodHRwOi8vYXBpLXBsYXRmb3JtLWFwaS9yZXBvc2l0b3J5IiwiaXNzIjoiaHR0cDovL2FwaS1wbGF0Zm9ybS1hcGkvcmVwb3NpdG9yeSJ9.zS2CPE1ObLKbJpx7R0M-iNU-rP5AB4NEMPKAfgGVZv0; lt-session-data=\"0.9974c5db170ed0bb11c\"; lt-pageview-id=\"0.f73cdb52170ed0bb11f\"; OptanonConsent=isIABGlobal=false&datestamp=Mon+Mar+23+2020+14%3A11%3A34+GMT%2B0000+(Greenwich+Mean+Time)&version=5.11.0&landingPath=NotLandingPage&groups=1%3A1%2C3%3A1%2C4%3A1&hosts=&geolocation=GB&AwaitingReconsent=false; amplitude_id_af54216f1488bfe2148ba742ea6c60dbmulesoft.com=eyJkZXZpY2VJZCI6IjRlMjRhODNjLWQyODUtNDg3My05NTdiLWQyMjQ3YjA1NmFjZlIiLCJ1c2VySWQiOiJhZWJmOWU2MC1lZjMzLTQxMGItOWRmNi05OTM4NThiNzYzNzIiLCJvcHRPdXQiOmZhbHNlLCJzZXNzaW9uSWQiOjE1ODUwNDYxNDA0MTksImxhc3RFdmVudFRpbWUiOjE1ODUwNDYyNTg2MjIsImV2ZW50SWQiOjUyLCJpZGVudGlmeUlkIjo0Miwic2VxdWVuY2VOdW1iZXIiOjk0fQ==; ajs_group_id=%2247d64e7e8d6f1890b94b6704e3f90b1879300e161bb00092f09718acc58d8fdb%22; mulesoft.sess=eyJpZCI6IjJFdmNybXBmbXVsS0NlM0JGZWJFZlVVNlR4TWdNdjhtIiwicGFzc3BvcnQiOnsidXNlciI6eyJ1c2VyX2lkIjoiOGMwMzE0NTctY2IzMy00NmU0LWE5MGYtZjA3Nzc1NzM3NWQ3In19LCJhdXRob3JpemUiOnt9fQ==; mulesoft.sess.sig=ULFsaSgq6jZgC7NeiCoPlVCcG6w; ajs_user_id=%228c031457-cb33-46e4-a90f-f077757375d7%22; ajs_anonymous_id=%227031df80-6ae1-4d23-916e-ad97682982a4%22; XSRF-TOKEN=bYLniR8o-P_GFVKU_nLc1BBJxl8p4hVr0lXQ; amplitude_id_7856322d613393b800727439f0954eb9mulesoft.com=eyJkZXZpY2VJZCI6IjUyZDNkYWNjLTc5ZGQtNGIxNy05YzliLTRiZjgxNjQ3MGU2OVIiLCJ1c2VySWQiOiI4YzAzMTQ1Ny1jYjMzLTQ2ZTQtYTkwZi1mMDc3NzU3Mzc1ZDciLCJvcHRPdXQiOmZhbHNlLCJzZXNzaW9uSWQiOjE1ODUwNTQ3MTM0NDEsImxhc3RFdmVudFRpbWUiOjE1ODUwNTQ3ODMwMTUsImV2ZW50SWQiOjcxMCwiaWRlbnRpZnlJZCI6NDM1LCJzZXF1ZW5jZU51bWJlciI6MTE0NX0="
+									}
+								],
+								"url": {
+									"raw": "https://anypoint.mulesoft.com/designcenter/api-designer/projects/fbdabf3b-6795-4cc5-85a3-929553feb033/branches/master/save/v2/?commit=true&message=Autosave%20Tue%20Mar%2024%202020%2013:00:31%20GMT+0000%20(Greenwich%20Mean%20Time)",
+									"protocol": "https",
+									"host": [
+										"anypoint",
+										"mulesoft",
+										"com"
+									],
+									"path": [
+										"designcenter",
+										"api-designer",
+										"projects",
+										"fbdabf3b-6795-4cc5-85a3-929553feb033",
+										"branches",
+										"master",
+										"save",
+										"v2",
+										""
+									],
+									"query": [
+										{
+											"key": "commit",
+											"value": "true"
+										},
+										{
+											"key": "message",
+											"value": "Autosave%20Tue%20Mar%2024%202020%2013:00:31%20GMT+0000%20(Greenwich%20Mean%20Time)"
+										}
+									]
+								}
 							},
 							"response": []
 						}
