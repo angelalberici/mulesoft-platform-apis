@@ -1,6 +1,8 @@
 # MuleSoft Platform APIs
 
-Every time you login into the MuleSoft Anypoint Platform, you are implicitly calling a set of APIs that are invoked by the UI, which are the PlatformAPIs! You can make these HTTP requests directly as well.
+Every time you login into the MuleSoft Anypoint Platform, you are implicitly calling a set of APIs that are invoked by the UI, the PlatformAPI! and you can make all these UI actions through HTTP requests directly as well, this is specially useful When automating your SDLC as you may need something more customizable than Anypoint CLI or the Mule Maven Plugin.
+
+These assets act as base to start working upon with good practices (Postman concatenation of requests, testing scripts, etc.) 
 
 If you are new to Platform APIs please go through this [post!](https://blogs.mulesoft.com/dev/howto/get-started-with-platform-apis-and-postman-automation/)
 
