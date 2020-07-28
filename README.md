@@ -6,7 +6,7 @@ If you are new to Platform APIs please go through this [post!](https://blogs.mul
 
 ## Prerequisites
 Before we start working with platform APIs, you need these three pieces of data: a session token, the organization id and the environment id; as shown in the below image.
-![Image of Process](https://lh4.googleusercontent.com/7eHwe9gXfjUv4xj4vsbM0sycs9hMD_RbjJQExK2Zt9rAD2gXsWOiZ3h4P-dpniL46UqzG2KqR9gdE0v-_Sg0YRKwAV_m99lbMhieRIiDT7hSip_-NoBhKXbILBiZbD-LsBDcb_VZ)
+![Image of Process](https://raw.githubusercontent.com/angelalberici/mulesoft-platform-apis/master/img/PlatfromAPIBasics.png)
 
 <p>Make sure you have <a href="https://www.postman.com/)" target="_blank" rel="noreferrer noopener" aria-label=" (opens in a new tab)">Postman</a> installed, that you do know how to <a href="https://learning.postman.com/docs/postman/collection-runs/working-with-data-files/#importing-sample-collection-files" target="_blank" rel="noreferrer noopener" aria-label=" (opens in a new tab)">import the Postman Collection and the Environment</a> and then you can finally download the postman assets from this repository. Import both files and make sure to add both anypoint-username and anypoint-password to your Postman Environment, the fields highlighted below.</p>
 
