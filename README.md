@@ -17,3 +17,7 @@ Before we start working with platform APIs, you need these three pieces of data:
 ## Start using
 
 That's about it. Download import into your Postman, add your credentials to the Environment. Ideas? Comments around the Anypoint Platform APIs documentation? Please leave them in the [post!](https://blogs.mulesoft.com/dev/howto/get-started-with-platform-apis-and-postman-automation/)
+
+## Next steps 
+-  If you are interested in more HTTP requests, make sure you check out: https://catalyst.mulesoft.com/display/OBD/Postman+Collection+for+Anypoint+API+Endpoints and download the zip containing the post
+-  Or to visit the Platform API Portal (https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/) 
