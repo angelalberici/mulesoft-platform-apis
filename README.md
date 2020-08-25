@@ -20,7 +20,7 @@ That's about it. Download import into your Postman, add your credentials to the 
 
 ## Next steps 
 -  Put what you learn into practice with [Learn How to use MuleSoft Platform APIs to manage API Specifications](https://developer.mulesoft.com/tutorials-and-howtos/quick-start/how-to-use-mulesoft-platform-apis-to-manage-api-specifications)
--  For more requests, make sure you check out: [MuleSoft Catalyst](https://catalyst.mulesoft.com/display/OBD/Postman+Collection+for+Anypoint+API+Endpoints)
+-  For additional Postman collections, make sure you check out: [MuleSoft Catalyst](https://catalyst.mulesoft.com/display/OBD/Postman+Collection+for+Anypoint+API+Endpoints)
 -  Or to visit the [Platform API Portal](https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/) 
 
 
