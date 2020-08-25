@@ -20,6 +20,8 @@ That's about it. Download import into your Postman, add your credentials to the 
 
 ## Next steps 
 -  Put what you learn into practice with [Learn How to use MuleSoft Platform APIs to manage API Specifications](https://developer.mulesoft.com/tutorials-and-howtos/quick-start/how-to-use-mulesoft-platform-apis-to-manage-api-specifications)
-- Make sure you spend some time to get confortable with what you just achieved with the Postman functionalities, how to concatenate requests, how to tests, etc. Think about where else could you use variables and requests, in what other daily tasks you could automate. 
 - If you are interested in more HTTP requests, make sure you check out: https://catalyst.mulesoft.com/display/OBD/Postman+Collection+for+Anypoint+API+Endpoints and download the zip containing the collections
 -  Or to visit the Platform API Portal (https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/) 
+
+
+Note: do spend some time to get confortable with what you just achieved with the Postman functionalities, how to concatenate requests, how to tests, etc. Think about where else could you use variables and requests, in what other daily tasks you could automate. 
