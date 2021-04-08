@@ -6,6 +6,8 @@ These assets act as base to start working upon with good practices (Postman conc
 
 If you are new to Platform APIs please go through this [post!](https://blogs.mulesoft.com/dev/howto/get-started-with-platform-apis-and-postman-automation/)
 
+For a full list of HTTP requests, make sure you check out: [MuleSoft Catalyst](https://catalyst.mulesoft.com/display/OBD/Postman+Collection+for+Anypoint+API+Endpoints) 
+
 ## Prerequisites
 Before we start working with platform APIs, you need these three pieces of data: a session token, the organization id and the environment id; as shown in the below image.
 ![Image of Process](https://raw.githubusercontent.com/angelalberici/mulesoft-platform-apis/master/img/PlatfromAPIBasics.png)
